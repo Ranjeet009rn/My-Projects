@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sangliso_yashaswiherbal" Class="JoinUsDbmlFileDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.tbl_videos" Member="tbl_videos">
+    <Type Name="tbl_video">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="path" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_video" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_banker" Member="tbl_bankers">
+    <Type Name="tbl_banker">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="banker" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_banker_tbl_membermaster" Member="tbl_membermasters" ThisKey="id" OtherKey="bankerid" Type="tbl_membermaster" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_batch" Member="tbl_batches">
+    <Type Name="tbl_batch">
+      <Column Name="batchid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="outStatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="productTransferDetailId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="tbl_ProductTbl_tbl_batch" Member="tbl_ProductTbl" ThisKey="productid" OtherKey="productId" Type="tbl_ProductTbl" IsForeignKey="true" />
+      <Association Name="tbl_ProductTransferDetail_tbl_batch" Member="tbl_ProductTransferDetail" ThisKey="productTransferDetailId" OtherKey="PTDID" Type="tbl_ProductTransferDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_BinaryCommission" Member="tbl_BinaryCommissions">
+    <Type Name="tbl_BinaryCommission">
+      <Column Name="SrNo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MemberID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OldLeftCarry" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="OldRightCarry" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LeftCount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="RightCount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TotalLeft" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Matched" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CappingAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BinaaryComm" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewLeftCarry" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NewRightCarry" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TrimCount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="pairno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="session" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_BinaryCommission_tbl_BinaryROIMaster" Member="tbl_BinaryROIMasters" ThisKey="SrNo" OtherKey="BinaryMatchinigId" Type="tbl_BinaryROIMaster" />
+      <Association Name="tbl_BinaryCommission_tbl_CuttingROIMaster" Member="tbl_CuttingROIMasters" ThisKey="SrNo" OtherKey="BinaryMatchinigId" Type="tbl_CuttingROIMaster" />
+      <Association Name="tbl_BinaryCommission_tbl_generation_commission" Member="tbl_generation_commissions" ThisKey="SrNo" OtherKey="binarymatchid" Type="tbl_generation_commission" />
+      <Association Name="tbl_membermaster_tbl_BinaryCommission" Member="tbl_membermaster" ThisKey="MemberID" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_BinaryROIMaster" Member="tbl_BinaryROIMasters">
+    <Type Name="tbl_BinaryROIMaster">
+      <Column Name="GrowthROIid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Member_ID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ROIno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ROIamount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ROIper" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BinaryMatchinigId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pairno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="session" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PayoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="topup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_BinaryCommission_tbl_BinaryROIMaster" Member="tbl_BinaryCommission" ThisKey="BinaryMatchinigId" OtherKey="SrNo" Type="tbl_BinaryCommission" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_BinaryROIMaster" Member="tbl_membermaster" ThisKey="Member_ID" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_callrecords" Member="tbl_callrecords">
+    <Type Name="tbl_callrecord">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tomobile" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_callrecord" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Category" Member="tbl_Categories">
+    <Type Name="tbl_Category">
+      <Column Name="CatId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_Category_tbl_ProductMaster" Member="tbl_ProductMasters" ThisKey="CatId" OtherKey="subcategoryid" Type="tbl_ProductMaster" />
+      <Association Name="tbl_Category_tbl_subcategory" Member="tbl_subcategories" ThisKey="CatId" OtherKey="categoryid" Type="tbl_subcategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_CheckCollection" Member="tbl_CheckCollections">
+    <Type Name="tbl_CheckCollection">
+      <Column Name="checkid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="checkno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="bank" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Checkdate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UTRNumber" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_CompanyDetail" Member="tbl_CompanyDetails">
+    <Type Name="tbl_CompanyDetail">
+      <Column Name="C_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Slogan" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PIN" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="website" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="welcomeLetterContent" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_CuttingROIMaster" Member="tbl_CuttingROIMasters">
+    <Type Name="tbl_CuttingROIMaster">
+      <Column Name="GrowthROIid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Member_ID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ROIno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ROIamount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ROIper" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BinaryMatchinigId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pairno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="session" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_BinaryCommission_tbl_CuttingROIMaster" Member="tbl_BinaryCommission" ThisKey="BinaryMatchinigId" OtherKey="SrNo" Type="tbl_BinaryCommission" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_CuttingROIMaster" Member="tbl_membermaster" ThisKey="Member_ID" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_directcommission" Member="tbl_directcommissions">
+    <Type Name="tbl_directcommission">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="directcommission" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="directcounts" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cash" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="frommemId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PayoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="topup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_directcommission" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_DistrictMaster" Member="tbl_DistrictMasters">
+    <Type Name="tbl_DistrictMaster">
+      <Column Name="DistrictId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DistrictName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_DistrictMaster_tbl_LocationMaster" Member="tbl_LocationMasters" ThisKey="DistrictId" OtherKey="DistricId" Type="tbl_LocationMaster" />
+      <Association Name="tbl_StateMaster_tbl_DistrictMaster" Member="tbl_StateMaster" ThisKey="StateID" OtherKey="StateId" Type="tbl_StateMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_FranchiseeDeposit" Member="tbl_FranchiseeDeposits">
+    <Type Name="tbl_FranchiseeDeposit">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="franchiseeId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="franchiseeSrId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="receiptPhoto" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="approveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UTR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_masterfranchisee_tbl_FranchiseeDeposit" Member="tbl_masterfranchisee" ThisKey="franchiseeSrId" OtherKey="id" Type="tbl_masterfranchisee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_gallery" Member="tbl_galleries">
+    <Type Name="tbl_gallery">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="img" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_galleryproduct" Member="tbl_galleryproducts">
+    <Type Name="tbl_galleryproduct">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="productimage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="productName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Discription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_generation_commission" Member="tbl_generation_commissions">
+    <Type Name="tbl_generation_commission">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="commission" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="frommember" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="transactionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PayoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="topup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="binarymatchid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_BinaryCommission_tbl_generation_commission" Member="tbl_BinaryCommission" ThisKey="binarymatchid" OtherKey="SrNo" Type="tbl_BinaryCommission" IsForeignKey="true" />
+      <Association Name="tbl_memberProductAssign_tbl_generation_commission" Member="tbl_memberProductAssign" ThisKey="transactionId" OtherKey="id" Type="tbl_memberProductAssign" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_generation_commission" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_holdingPayout" Member="tbl_holdingPayouts">
+    <Type Name="tbl_holdingPayout">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="holdingAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="maxtopupid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paidstatus" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PayoutDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_holdingPayout" Member="tbl_membermaster" ThisKey="member_id" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_home_images" Member="tbl_home_images">
+    <Type Name="tbl_home_image">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="path" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_level_commission_setting" Member="tbl_level_commission_settings">
+    <Type Name="tbl_level_commission_setting">
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="commission" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Promotion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="criterial" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_LocationMaster" Member="tbl_LocationMasters">
+    <Type Name="tbl_LocationMaster">
+      <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DistricId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_DistrictMaster_tbl_LocationMaster" Member="tbl_DistrictMaster" ThisKey="DistricId" OtherKey="DistrictId" Type="tbl_DistrictMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_masterfranchisee" Member="tbl_masterfranchisees">
+    <Type Name="tbl_masterfranchisee">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="masterfranchisee" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="createddate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_masterfranchisee_tbl_FranchiseeDeposit" Member="tbl_FranchiseeDeposits" ThisKey="id" OtherKey="franchiseeSrId" Type="tbl_FranchiseeDeposit" />
+      <Association Name="tbl_membermaster_tbl_masterfranchisee" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_MemberPackageRequest" Member="tbl_MemberPackageRequests">
+    <Type Name="tbl_MemberPackageRequest">
+      <Column Name="requestId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ApprovedDAte" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PkgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="slipimage" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="franchiseeid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_MemberPackageRequest_tbl_MemberPackageRequestDetail" Member="tbl_MemberPackageRequestDetails" ThisKey="requestId" OtherKey="requestId" Type="tbl_MemberPackageRequestDetail" />
+      <Association Name="tbl_PackageMaster_tbl_MemberPackageRequest" Member="tbl_PackageMaster" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_MemberPackageRequest" Member="tbl_membermaster" ThisKey="memberId" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_MemberPackageRequestDetails" Member="tbl_MemberPackageRequestDetails">
+    <Type Name="tbl_MemberPackageRequestDetail">
+      <Column Name="requestDetailsid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="requestId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="prdid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_MemberPackageRequest_tbl_MemberPackageRequestDetail" Member="tbl_MemberPackageRequest" ThisKey="requestId" OtherKey="requestId" Type="tbl_MemberPackageRequest" IsForeignKey="true" />
+      <Association Name="tbl_PackageMaster_tbl_MemberPackageRequestDetail" Member="tbl_PackageMaster" ThisKey="PkgID" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_memberProductAssign" Member="tbl_memberProductAssigns">
+    <Type Name="tbl_memberProductAssign">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totBv" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="franchiseeId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="topup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totAmt" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbl_memberProductAssign_tbl_generation_commission" Member="tbl_generation_commissions" ThisKey="id" OtherKey="transactionId" Type="tbl_generation_commission" />
+      <Association Name="tbl_memberProductAssign_tbl_memberProductAssignDetail" Member="tbl_memberProductAssignDetails" ThisKey="id" OtherKey="productAssignId" Type="tbl_memberProductAssignDetail" />
+      <Association Name="tbl_membermaster_tbl_memberProductAssign" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_memberProductAssignDetails" Member="tbl_memberProductAssignDetails">
+    <Type Name="tbl_memberProductAssignDetail">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="productAssignId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_memberProductAssign_tbl_memberProductAssignDetail" Member="tbl_memberProductAssign" ThisKey="productAssignId" OtherKey="id" Type="tbl_memberProductAssign" IsForeignKey="true" />
+      <Association Name="tbl_PackageMaster_tbl_memberProductAssignDetail" Member="tbl_PackageMaster" ThisKey="PkgID" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_NetCommission" Member="tbl_NetCommissions">
+    <Type Name="tbl_NetCommission">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="total_payout" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tds" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="netpay" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Monthly" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Generation" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Group_Payout" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_NetCommission" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_notification" Member="tbl_notifications">
+    <Type Name="tbl_notification">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="notification" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PackageMaster" Member="tbl_PackageMasters">
+    <Type Name="tbl_PackageMaster">
+      <Column Name="PkgId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PkgName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgBv" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HSCommission" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DHSCommission" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DirectComm" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CappingAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SpillIncome" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DiscountAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cgst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="sgst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="igst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HSN_No" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_PackageMaster_tbl_MemberPackageRequest" Member="tbl_MemberPackageRequests" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_MemberPackageRequest" />
+      <Association Name="tbl_PackageMaster_tbl_MemberPackageRequestDetail" Member="tbl_MemberPackageRequestDetails" ThisKey="PkgId" OtherKey="PkgID" Type="tbl_MemberPackageRequestDetail" />
+      <Association Name="tbl_PackageMaster_tbl_memberProductAssignDetail" Member="tbl_memberProductAssignDetails" ThisKey="PkgId" OtherKey="PkgID" Type="tbl_memberProductAssignDetail" />
+      <Association Name="tbl_PackageMaster_tbl_PackageRequest" Member="tbl_PackageRequests" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PackageRequest" />
+      <Association Name="tbl_PackageMaster_tbl_PackageRequestDetail" Member="tbl_PackageRequestDetails" ThisKey="PkgId" OtherKey="PkgID" Type="tbl_PackageRequestDetail" />
+      <Association Name="tbl_PackageMaster_tbl_PinMaster" Member="tbl_PinMasters" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PinMaster" />
+      <Association Name="tbl_PackageMaster_tbl_ProductPkgTransaction" Member="tbl_ProductPkgTransactions" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_ProductPkgTransaction" />
+      <Association Name="tbl_PackageMaster_tbl_repurchasemaster" Member="tbl_repurchasemasters" ThisKey="PkgId" OtherKey="productId" Type="tbl_repurchasemaster" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PackageRequest" Member="tbl_PackageRequests">
+    <Type Name="tbl_PackageRequest">
+      <Column Name="requestId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ApprovedDAte" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PkgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="slipimage" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="tbl_PackageRequest_tbl_PackageRequestDetail" Member="tbl_PackageRequestDetails" ThisKey="requestId" OtherKey="requestId" Type="tbl_PackageRequestDetail" />
+      <Association Name="tbl_PackageMaster_tbl_PackageRequest" Member="tbl_PackageMaster" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_PackageRequest" Member="tbl_membermaster" ThisKey="memberId" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PackageRequestDetails" Member="tbl_PackageRequestDetails">
+    <Type Name="tbl_PackageRequestDetail">
+      <Column Name="requestDetailsid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="requestId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="prdid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_PackageMaster_tbl_PackageRequestDetail" Member="tbl_PackageMaster" ThisKey="PkgID" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_PackageRequest_tbl_PackageRequestDetail" Member="tbl_PackageRequest" ThisKey="requestId" OtherKey="requestId" Type="tbl_PackageRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_pin_wallet" Member="tbl_pin_wallets">
+    <Type Name="tbl_pin_wallet">
+      <Column Name="checkid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="frommemberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="type" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="tomemberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_pin_wallet" Member="tbl_membermaster" ThisKey="frommemberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_pin_wallet1" Member="tbl_membermaster1" ThisKey="tomemberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PinMaster" Member="tbl_PinMasters">
+    <Type Name="tbl_PinMaster">
+      <Column Name="PTID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PRID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Pin" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MemAceptDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PackageReqID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="producttrid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productTransferDetailIds" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_PinMaster_tbl_membermaster" Member="tbl_membermasters" ThisKey="PTID" OtherKey="SecurityPIN" Type="tbl_membermaster" />
+      <Association Name="tbl_PackageMaster_tbl_PinMaster" Member="tbl_PackageMaster" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_PinTransaction_tbl_PinMaster" Member="tbl_PinTransaction" ThisKey="PRID" OtherKey="requestId" Type="tbl_PinTransaction" IsForeignKey="true" />
+      <Association Name="tbl_ProductTransfer_tbl_PinMaster" Member="tbl_ProductTransfer" ThisKey="producttrid" OtherKey="PTID" Type="tbl_ProductTransfer" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_PinMaster" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_PinTransaction" Member="tbl_PinTransactions">
+    <Type Name="tbl_PinTransaction">
+      <Column Name="requestId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fromid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="toid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbl_PinTransaction_tbl_PinMaster" Member="tbl_PinMasters" ThisKey="requestId" OtherKey="PRID" Type="tbl_PinMaster" />
+      <Association Name="tbl_membermaster_tbl_PinTransaction" Member="tbl_membermaster" ThisKey="fromid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_PinTransaction1" Member="tbl_membermaster1" ThisKey="toid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_power" Member="tbl_powers">
+    <Type Name="tbl_power">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="position" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_power" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductMaster" Member="tbl_ProductMasters">
+    <Type Name="tbl_ProductMaster">
+      <Column Name="ProdId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProdName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="subcategoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MRP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Tax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GeneralPublish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HotPublish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProdImg" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Association Name="tbl_Category_tbl_ProductMaster" Member="tbl_Category" ThisKey="subcategoryid" OtherKey="CatId" Type="tbl_Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductPkgTransaction" Member="tbl_ProductPkgTransactions">
+    <Type Name="tbl_ProductPkgTransaction">
+      <Column Name="PPTId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_PackageMaster_tbl_ProductPkgTransaction" Member="tbl_PackageMaster" ThisKey="PkgId" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_ProductTbl_tbl_ProductPkgTransaction" Member="tbl_ProductTbl" ThisKey="PId" OtherKey="productId" Type="tbl_ProductTbl" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductTbl" Member="tbl_ProductTbls">
+    <Type Name="tbl_ProductTbl">
+      <Column Name="productId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="productName" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="productDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="prodctPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TaxPer" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ImagePath" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="qty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DHSComm" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HSComm" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cgst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="sgst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="igst" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="purchasePrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="productBV" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HSN_No" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_ProductTbl_tbl_batch" Member="tbl_batches" ThisKey="productId" OtherKey="productid" Type="tbl_batch" />
+      <Association Name="tbl_ProductTbl_tbl_ProductPkgTransaction" Member="tbl_ProductPkgTransactions" ThisKey="productId" OtherKey="PId" Type="tbl_ProductPkgTransaction" />
+      <Association Name="tbl_ProductTbl_tbl_ProductTransferDetail" Member="tbl_ProductTransferDetails" ThisKey="productId" OtherKey="PID" Type="tbl_ProductTransferDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductTransfer" Member="tbl_ProductTransfers">
+    <Type Name="tbl_ProductTransfer">
+      <Column Name="PTID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FromMemberID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ToMemberID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="requestId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_ProductTransfer_tbl_PinMaster" Member="tbl_PinMasters" ThisKey="PTID" OtherKey="producttrid" Type="tbl_PinMaster" />
+      <Association Name="tbl_ProductTransfer_tbl_ProductTransferDetail" Member="tbl_ProductTransferDetails" ThisKey="PTID" OtherKey="PTID" Type="tbl_ProductTransferDetail" />
+      <Association Name="tbl_SupplierMaster_tbl_ProductTransfer" Member="tbl_SupplierMaster" ThisKey="SupplierID" OtherKey="SID" Type="tbl_SupplierMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductTransferDetail" Member="tbl_ProductTransferDetails">
+    <Type Name="tbl_ProductTransferDetail">
+      <Column Name="PTDID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PTID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbl_ProductTransferDetail_tbl_batch" Member="tbl_batches" ThisKey="PTDID" OtherKey="productTransferDetailId" Type="tbl_batch" />
+      <Association Name="tbl_ProductTbl_tbl_ProductTransferDetail" Member="tbl_ProductTbl" ThisKey="PID" OtherKey="productId" Type="tbl_ProductTbl" IsForeignKey="true" />
+      <Association Name="tbl_ProductTransfer_tbl_ProductTransferDetail" Member="tbl_ProductTransfer" ThisKey="PTID" OtherKey="PTID" Type="tbl_ProductTransfer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_ProductTypes" Member="tbl_ProductTypes">
+    <Type Name="tbl_ProductType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OneBV_Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_repurchasecommission" Member="tbl_repurchasecommissions">
+    <Type Name="tbl_repurchasecommission">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="repurchasecommission" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_membermaster_tbl_repurchasecommission" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_repurchaseCommissionSetting" Member="tbl_repurchaseCommissionSettings">
+    <Type Name="tbl_repurchaseCommissionSetting">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="packageid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="commission" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_repurchasemaster" Member="tbl_repurchasemasters">
+    <Type Name="tbl_repurchasemaster">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="productId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="transactioID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PTDID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="topup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_PackageMaster_tbl_repurchasemaster" Member="tbl_PackageMaster" ThisKey="productId" OtherKey="PkgId" Type="tbl_PackageMaster" IsForeignKey="true" />
+      <Association Name="tbl_membermaster_tbl_repurchasemaster" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_specialtraining" Member="tbl_specialtrainings">
+    <Type Name="tbl_specialtraining">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_StateMaster" Member="tbl_StateMasters">
+    <Type Name="tbl_StateMaster">
+      <Column Name="StateId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StateName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_StateMaster_tbl_DistrictMaster" Member="tbl_DistrictMasters" ThisKey="StateId" OtherKey="StateID" Type="tbl_DistrictMaster" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_subcategory" Member="tbl_subcategories">
+    <Type Name="tbl_subcategory">
+      <Column Name="subcatid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="subcategory" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_Category_tbl_subcategory" Member="tbl_Category" ThisKey="categoryid" OtherKey="CatId" Type="tbl_Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_SupplierMaster" Member="tbl_SupplierMasters">
+    <Type Name="tbl_SupplierMaster">
+      <Column Name="SID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OpeingBal" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Association Name="tbl_SupplierMaster_tbl_ProductTransfer" Member="tbl_ProductTransfers" ThisKey="SID" OtherKey="SupplierID" Type="tbl_ProductTransfer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_transaction" Member="tbl_transactions">
+    <Type Name="tbl_transaction">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SponcerId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PlacemMentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_transaction" Member="tbl_membermaster" ThisKey="SponcerId" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_addressmaster" Member="tbl_addressmasters">
+    <Type Name="tbl_addressmaster">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hrid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="locationid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="landmark" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="pincode" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="district" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="taluka" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_addressmaster" Member="tbl_membermaster" ThisKey="member_id" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_LoginMaster" Member="tbl_LoginMasters">
+    <Type Name="tbl_LoginMaster">
+      <Column Name="UserName" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HRID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="lastlogindate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Role" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="memberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="pinTransactionPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_LoginMaster" Member="tbl_membermaster" ThisKey="memberId" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_membermaster" Member="tbl_membermasters">
+    <Type Name="tbl_membermaster">
+      <Column Name="id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="brid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hrid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="firstname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="middlename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="lastname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="dob" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nationality" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="maritalstatus" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nomineefirstname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nomineemiddlename" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nomineelastname" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nomineedob" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="relationwithnominee" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nomineegender" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nomineeaddress" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="referencename" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="accountid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="mobile" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="registrationdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="bankerid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ifsc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="branch" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="accounttype" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="accountno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="issenior" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ishandicaped" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="goldenaccountid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sponcerid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="adharnumber" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="pannumber" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SecurityPIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isfranchisee" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="activatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="bankstatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bankingName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_video" Member="tbl_videos" ThisKey="id" OtherKey="memberid" Type="tbl_video" />
+      <Association Name="tbl_membermaster_tbl_BinaryCommission" Member="tbl_BinaryCommissions" ThisKey="id" OtherKey="MemberID" Type="tbl_BinaryCommission" />
+      <Association Name="tbl_membermaster_tbl_BinaryROIMaster" Member="tbl_BinaryROIMasters" ThisKey="id" OtherKey="Member_ID" Type="tbl_BinaryROIMaster" />
+      <Association Name="tbl_membermaster_tbl_callrecord" Member="tbl_callrecords" ThisKey="id" OtherKey="memberid" Type="tbl_callrecord" />
+      <Association Name="tbl_membermaster_tbl_CuttingROIMaster" Member="tbl_CuttingROIMasters" ThisKey="id" OtherKey="Member_ID" Type="tbl_CuttingROIMaster" />
+      <Association Name="tbl_membermaster_tbl_directcommission" Member="tbl_directcommissions" ThisKey="id" OtherKey="memberid" Type="tbl_directcommission" />
+      <Association Name="tbl_membermaster_tbl_generation_commission" Member="tbl_generation_commissions" ThisKey="id" OtherKey="memberid" Type="tbl_generation_commission" />
+      <Association Name="tbl_membermaster_tbl_holdingPayout" Member="tbl_holdingPayouts" ThisKey="id" OtherKey="member_id" Type="tbl_holdingPayout" />
+      <Association Name="tbl_membermaster_tbl_masterfranchisee" Member="tbl_masterfranchisees" ThisKey="id" OtherKey="memberid" Type="tbl_masterfranchisee" />
+      <Association Name="tbl_membermaster_tbl_MemberPackageRequest" Member="tbl_MemberPackageRequests" ThisKey="id" OtherKey="memberId" Type="tbl_MemberPackageRequest" />
+      <Association Name="tbl_membermaster_tbl_memberProductAssign" Member="tbl_memberProductAssigns" ThisKey="id" OtherKey="memberid" Type="tbl_memberProductAssign" />
+      <Association Name="tbl_membermaster_tbl_NetCommission" Member="tbl_NetCommissions" ThisKey="id" OtherKey="memberid" Type="tbl_NetCommission" />
+      <Association Name="tbl_membermaster_tbl_PackageRequest" Member="tbl_PackageRequests" ThisKey="id" OtherKey="memberId" Type="tbl_PackageRequest" />
+      <Association Name="tbl_membermaster_tbl_pin_wallet" Member="tbl_pin_wallets" ThisKey="id" OtherKey="frommemberid" Type="tbl_pin_wallet" />
+      <Association Name="tbl_membermaster_tbl_pin_wallet1" Member="tbl_pin_wallets1" ThisKey="id" OtherKey="tomemberid" Type="tbl_pin_wallet" />
+      <Association Name="tbl_membermaster_tbl_PinMaster" Member="tbl_PinMasters" ThisKey="id" OtherKey="memberid" Type="tbl_PinMaster" />
+      <Association Name="tbl_membermaster_tbl_PinTransaction" Member="tbl_PinTransactions" ThisKey="id" OtherKey="fromid" Type="tbl_PinTransaction" />
+      <Association Name="tbl_membermaster_tbl_PinTransaction1" Member="tbl_PinTransactions1" ThisKey="id" OtherKey="toid" Type="tbl_PinTransaction" />
+      <Association Name="tbl_membermaster_tbl_power" Member="tbl_powers" ThisKey="id" OtherKey="memberid" Type="tbl_power" />
+      <Association Name="tbl_membermaster_tbl_repurchasecommission" Member="tbl_repurchasecommissions" ThisKey="id" OtherKey="memberid" Type="tbl_repurchasecommission" />
+      <Association Name="tbl_membermaster_tbl_repurchasemaster" Member="tbl_repurchasemasters" ThisKey="id" OtherKey="memberid" Type="tbl_repurchasemaster" />
+      <Association Name="tbl_membermaster_tbl_transaction" Member="tbl_transactions" ThisKey="id" OtherKey="SponcerId" Type="tbl_transaction" />
+      <Association Name="tbl_membermaster_tbl_addressmaster" Member="tbl_addressmasters" ThisKey="id" OtherKey="member_id" Type="tbl_addressmaster" />
+      <Association Name="tbl_membermaster_tbl_LoginMaster" Member="tbl_LoginMasters" ThisKey="id" OtherKey="memberId" Type="tbl_LoginMaster" />
+      <Association Name="tbl_membermaster_tbl_documentmaster" Member="tbl_documentmasters" ThisKey="id" OtherKey="memberid" Type="tbl_documentmaster" />
+      <Association Name="tbl_banker_tbl_membermaster" Member="tbl_banker" ThisKey="bankerid" OtherKey="id" Type="tbl_banker" IsForeignKey="true" />
+      <Association Name="tbl_PinMaster_tbl_membermaster" Member="tbl_PinMaster" ThisKey="SecurityPIN" OtherKey="PTID" Type="tbl_PinMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_documentmaster" Member="tbl_documentmasters">
+    <Type Name="tbl_documentmaster">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="photo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="pan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="adhar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="memberid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sign" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_membermaster_tbl_documentmaster" Member="tbl_membermaster" ThisKey="memberid" OtherKey="id" Type="tbl_membermaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_CommonGetMaxID" Method="sp_CommonGetMaxID">
+    <Parameter Name="tblname" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="colname" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="sp_CommonGetMaxIDResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTE1" Method="sp_CTE1">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PayoutDate" Parameter="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="statementType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_CTE1Result">
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="MobileNumber" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="JoiningDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DownCount" Method="sp_DownCount">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_DownCountResult">
+      <Column Name="downcount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Geneology" Method="sp_Geneology">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="levelno" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_GeneologyResult">
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SponceID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_getLevelwiseMembersCountForCommission" Method="sp_getLevelwiseMembersCountForCommission">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="start_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="end_date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="sp_getLevelwiseMembersCountForCommissionResult">
+      <Column Name="membercount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="levelCommPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_levelwiseTotMembers" Method="sp_levelwiseTotMembers">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="fromDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="toDate" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="sp_levelwiseTotMembersResult">
+      <Column Name="membercount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totAmount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="levelCommPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MemList" Method="sp_MemList">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="lastSunday" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="sp_MemListResult">
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(302)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SponcerID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="registrationdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MemListForLEvelwiseCout" Method="sp_MemListForLEvelwiseCout">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="lastSunday" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="sp_MemListForLEvelwiseCoutResult">
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(302)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SponcerID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_upline" Method="sp_upline">
+    <Parameter Name="mid" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="levelno" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_uplineResult">
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BinaryGeneology" Method="sp_BinaryGeneology">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="levelno" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_BinaryGeneologyResult">
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SponceID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TotalLeftRight" Method="sp_TotalLeftRight">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PayoutDate" Parameter="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="statementType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_TotalLeftRightResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="MobileNumber" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="JoiningDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_payoutProductwiseCapping" Method="sp_payoutProductwiseCapping">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="lastSunday" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="statementType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_payoutProductwiseCappingResult">
+      <Column Name="PkgBv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getMemberIdList" Method="getMemberIdList">
+    <Parameter Name="mid" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="searchterm" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="getMemberIdListResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_MemListv" Method="sp_MemListv">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="lastSunday" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="statementType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_MemListvResult">
+      <Column Name="PkgBv" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PkgName" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="PlacemMentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="SponcerID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="activatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="activatedate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TotalLeftRightglobale" Method="sp_TotalLeftRightglobale">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PayoutDate" Parameter="payoutDate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="statementType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_TotalLeftRightglobaleResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MemberName" Type="System.String" DbType="VarChar(201)" CanBeNull="true" />
+      <Column Name="MobileNumber" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JoiningDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ActivationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="totBv" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SponcerID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PlacemMentID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getOnlyMemberIdList" Method="getOnlyMemberIdList">
+    <Parameter Name="mid" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="getOnlyMemberIdListResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ExtremLeft" Method="sp_ExtremLeft">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_ExtremLeftResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ExtremRight" Method="sp_ExtremRight">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_ExtremRightResult">
+      <Column Name="MemberId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_LeftRightDirectCondition" Method="sp_LeftRightDirectCondition">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_LeftRightDirectConditionResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_upline1" Method="sp_upline1">
+    <Parameter Name="mid" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="level" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_upline1Result">
+      <Column Name="member_id" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SponcerId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

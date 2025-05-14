@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>/
+
+    <!-- Local Swiper CSS -->
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <!-- Bootstrap CSS (optional) -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- Header Placeholder -->
+        <header>
+            <!-- You can include your logo, nav menu here -->
+            <asp:ContentPlaceHolder ID="HeaderContent" runat="server" />
+        </header>
+
+        <!-- Main Page Content -->
+        <main>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <!-- Footer Placeholder -->
+        <footer>
+            <asp:ContentPlaceHolder ID="FooterContent" runat="server" />
+        </footer>
+    </form>
+
+    <!-- Scripts -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Swiper Init Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.swiper-slide').forEach(slide => {
+                const bg = slide.getAttribute('data-slide-bg');
+                if (bg) {
+                    slide.style.backgroundImage = `url(${bg})`;
+                    slide.style.backgroundSize = 'cover';
+                    slide.style.backgroundPosition = 'center center';
+                }
+            });
+
+            new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                effect: 'slide',
+                slidesPerView: 1
+            });
+        });
+    </script>
+</body>
+</html>
